@@ -7,8 +7,9 @@ import {
   TrendingUp, 
   Building, 
   Activity, 
-  ArrowUpRight 
+  Users 
 } from 'lucide-react';
+import TeamRoster from './TeamRoster';
 
 export default function ExecutiveDashboard({ tickets, clients, assets, onSelectTicket, selectedClient }) {
   // Filter by client if selected
@@ -48,20 +49,23 @@ export default function ExecutiveDashboard({ tickets, clients, assets, onSelectT
         borderRadius: '16px'
       }}>
         <div>
-          <h2 style={{ fontSize: '1.35rem', fontWeight: 700, marginBottom: '0.25rem' }}>
-            Managed Services Executive Operations SLA Dashboard
+          <h2 style={{ fontSize: '1.35rem', fontWeight: 800, marginBottom: '0.25rem' }}>
+            Denali Clinical Operations - Cognizant Project Managed Services SLA Tracker
           </h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-            Real-time tracking across <strong>{clients.length} Managed Client Accounts</strong> & <strong>{assets.length} CMDB Assets</strong>.
+            ITSM Service Management • 1 Onsite Lead + 4 Offshore Engineers Delivery Model
           </p>
         </div>
         <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
           <span style={{ fontSize: '0.78rem', background: 'rgba(16, 185, 129, 0.15)', color: 'var(--accent-emerald)', padding: '0.35rem 0.75rem', borderRadius: '20px', border: '1px solid rgba(16, 185, 129, 0.3)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
             <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--accent-emerald)' }} className="pulse-glow"></span>
-            ITSM Service Engine Active
+            Platinum 24/7 Clinical Engine Active
           </span>
         </div>
       </div>
+
+      {/* Cognizant Team Roster Component */}
+      <TeamRoster />
 
       {/* KPI Cards Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.25rem', marginBottom: '1.75rem' }}>
@@ -76,7 +80,7 @@ export default function ExecutiveDashboard({ tickets, clients, assets, onSelectT
           overflow: 'hidden'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
-            <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 600 }}>Active P1 Outages</span>
+            <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 600 }}>Active P1 Clinical Outages</span>
             <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: p1Outages.length > 0 ? 'rgba(244, 63, 94, 0.2)' : 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <AlertTriangle size={20} color={p1Outages.length > 0 ? 'var(--accent-rose)' : 'var(--text-muted)'} />
             </div>
@@ -85,7 +89,7 @@ export default function ExecutiveDashboard({ tickets, clients, assets, onSelectT
             {p1Outages.length}
           </div>
           <p style={{ fontSize: '0.75rem', color: p1Outages.length > 0 ? 'var(--accent-rose)' : 'var(--text-muted)' }}>
-            {p1Outages.length > 0 ? '🚨 Immediate Escalation Triggered' : 'No Critical P1 Outages reported'}
+            {p1Outages.length > 0 ? '🚨 Immediate Escalation Triggered to Onsite Lead' : 'No Critical P1 Outages reported'}
           </p>
         </div>
 
@@ -97,7 +101,7 @@ export default function ExecutiveDashboard({ tickets, clients, assets, onSelectT
           padding: '1.25rem'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
-            <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 600 }}>Active Incidents</span>
+            <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 600 }}>Active Work Items</span>
             <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(245, 158, 11, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Activity size={20} color="var(--accent-amber)" />
             </div>
@@ -106,7 +110,7 @@ export default function ExecutiveDashboard({ tickets, clients, assets, onSelectT
             {openIncidents.length}
           </div>
           <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-            {pendingClient.length} tickets on pause (Pending Client)
+            {pendingClient.length} tickets pending client input
           </p>
         </div>
 
@@ -127,7 +131,7 @@ export default function ExecutiveDashboard({ tickets, clients, assets, onSelectT
             {slaPercentage}%
           </div>
           <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-            Target: 98.5% SLA Performance Contract
+            Target: 99.0% Clinical Contract SLA
           </p>
         </div>
 
@@ -139,7 +143,7 @@ export default function ExecutiveDashboard({ tickets, clients, assets, onSelectT
           padding: '1.25rem'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
-            <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 600 }}>Managed Infrastructure</span>
+            <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 600 }}>Clinical CMDB Assets</span>
             <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(6, 182, 212, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Server size={20} color="var(--accent-cyan)" />
             </div>
@@ -148,7 +152,7 @@ export default function ExecutiveDashboard({ tickets, clients, assets, onSelectT
             {filteredAssets.length}
           </div>
           <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-            Servers, DBs, Apps & Firewalls in CMDB
+            CTMS, EDC DB, Oracle & Firewall CIs
           </p>
         </div>
 
@@ -157,7 +161,7 @@ export default function ExecutiveDashboard({ tickets, clients, assets, onSelectT
       {/* Main Grid: Client Health Cards + Live Ticket Operations */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '1.5rem' }}>
         
-        {/* Left Column: Client Portfolio Health */}
+        {/* Left Column: Client Account Card */}
         <div style={{
           background: 'var(--bg-card)',
           border: '1px solid var(--border-color)',
@@ -166,7 +170,7 @@ export default function ExecutiveDashboard({ tickets, clients, assets, onSelectT
         }}>
           <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <Building size={18} color="var(--primary)" />
-            Client Accounts & SLA Status
+            Project Account Details
           </h3>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
@@ -175,30 +179,18 @@ export default function ExecutiveDashboard({ tickets, clients, assets, onSelectT
                 background: 'rgba(255, 255, 255, 0.02)',
                 border: '1px solid var(--border-color)',
                 borderRadius: '12px',
-                padding: '0.85rem 1rem',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center'
+                padding: '1rem'
               }}>
-                <div>
-                  <h4 style={{ fontSize: '0.9rem', fontWeight: 700, marginBottom: '0.2rem' }}>{client.name}</h4>
-                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                    <span style={{ fontSize: '0.72rem', background: 'rgba(99, 102, 241, 0.15)', color: 'var(--primary)', padding: '0.15rem 0.5rem', borderRadius: '4px', fontWeight: 600 }}>
-                      {client.slaTier}
-                    </span>
-                    <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-                      Contact: {client.contact}
-                    </span>
-                  </div>
+                <h4 style={{ fontSize: '0.95rem', fontWeight: 800, marginBottom: '0.3rem', color: 'var(--text-main)' }}>
+                  {client.name}
+                </h4>
+                <div style={{ fontSize: '0.78rem', color: 'var(--accent-cyan)', fontWeight: 600, marginBottom: '0.5rem' }}>
+                  {client.slaTier}
                 </div>
-
-                <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 600, color: client.health === 'Healthy' ? 'var(--accent-emerald)' : client.health === 'Warning' ? 'var(--accent-amber)' : 'var(--accent-rose)' }}>
-                    {client.health}
-                  </div>
-                  <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-                    {client.activeTickets} Active Tickets
-                  </div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <span>Escalation Email: <strong>{client.contact}</strong></span>
+                  <span>Operating Model: <strong>{client.location}</strong></span>
+                  <span>Active Managed Tickets: <strong>{client.activeTickets}</strong></span>
                 </div>
               </div>
             ))}
@@ -215,7 +207,7 @@ export default function ExecutiveDashboard({ tickets, clients, assets, onSelectT
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
             <h3 style={{ fontSize: '1rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Clock size={18} color="var(--accent-amber)" />
-              Active Incident SLA Countdown & Dispatch
+              Active Incident SLA Dispatch Queue
             </h3>
             <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
               Showing {filteredTickets.length} items
@@ -261,9 +253,6 @@ export default function ExecutiveDashboard({ tickets, clients, assets, onSelectT
                       }}>
                         {ticket.priority}
                       </span>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                        Client: <strong>{ticket.client}</strong>
-                      </span>
                     </div>
 
                     <h4 style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-main)', marginBottom: '0.3rem' }}>
@@ -272,7 +261,7 @@ export default function ExecutiveDashboard({ tickets, clients, assets, onSelectT
 
                     <div style={{ display: 'flex', gap: '1rem', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
                       <span>CI: <code style={{ color: 'var(--accent-cyan)' }}>{ticket.assetName}</code></span>
-                      <span>Assignee: <strong>{ticket.assignee}</strong></span>
+                      <span>Assignee: <strong style={{ color: 'var(--text-main)' }}>{ticket.assignee}</strong></span>
                     </div>
                   </div>
 

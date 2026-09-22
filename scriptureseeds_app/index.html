@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>scriptureseedsZerah | Leather DIY Kits & Children's Storybooks (0-5)</title>
-  <meta name="description" content="Discover wholesome bedtime storybooks for ages 0-5 and handcrafted leathercraft DIY kits under scriptureseedsZerah. Personalize with monograms and custom scripture stamps.">
+  <title>scriptureseedsZerah | Leather DIY Kits, Children's Books & Toddler Games (0-5)</title>
+  <meta name="description" content="Discover bedtime storybooks for ages 0-5, handcrafted leathercraft DIY kits, and interactive painting & memory games under scriptureseedsZerah.">
   <link rel="stylesheet" href="styles.css">
   <!-- Font Awesome Icons for rich UI -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -35,6 +35,7 @@
       <li><a class="nav-link active" data-filter="all">All Catalog</a></li>
       <li><a class="nav-link" data-filter="storybook">Storybooks (0–5)</a></li>
       <li><a class="nav-link" data-filter="leather">Leather DIY Kits</a></li>
+      <li><a class="nav-link" href="#toddlerZone">🎨 Toddler Zone (0-5)</a></li>
       <li><a class="nav-link" href="#studioSection">Monogram Studio</a></li>
       <li><a class="nav-link" href="#bundleSection">Gift Bundles</a></li>
     </ul>
@@ -59,17 +60,17 @@
         <i class="fa-solid fa-heart"></i> Handcrafted for Growing Hearts & Minds
       </div>
       <h1 class="hero-title">
-        Wholesome Bedtime Stories & <span>Leather DIY Craft Kits</span>
+        Wholesome Bedtime Stories, <span>Leather DIY & Toddler Games</span>
       </h1>
       <p class="hero-description">
-        Planting seeds of faith, wisdom, and creativity. Explore our illustrated children's storybooks for toddlers (ages 0–5) and premium full-grain leather DIY kits designed to create lasting heirloom gifts.
+        Planting seeds of faith, wisdom, and creativity. Explore our illustrated storybooks for toddlers (ages 0–5), toddler DIY craft sets, painting studio, and memory matching games.
       </p>
       <div class="hero-actions">
         <a href="#catalogSection" class="btn-primary" onclick="setCatalogFilter('storybook')">
           <i class="fa-solid fa-book-open"></i> Browse Storybooks
         </a>
-        <a href="#catalogSection" class="btn-secondary" onclick="setCatalogFilter('leather')">
-          <i class="fa-solid fa-scissors"></i> Discover Leather Kits
+        <a href="#toddlerZone" class="btn-secondary">
+          <i class="fa-solid fa-palette"></i> Toddler Painting & Games
         </a>
       </div>
     </div>
@@ -88,12 +89,12 @@
     </div>
   </header>
 
-  <!-- Category Dual Cards -->
+  <!-- Category Triple Cards -->
   <section class="categories-showcase">
     <div class="category-card storybooks-card" onclick="setCatalogFilter('storybook')">
       <div class="category-card-content">
-        <h3>Children's Storybooks (Ages 0–5)</h3>
-        <p>Short bedtime tales, vivid watercolor art, and foundational Scripture seeds for little hearts.</p>
+        <h3>Storybooks (0–5)</h3>
+        <p>Short bedtime tales, vivid watercolor art, and foundational Scripture seeds.</p>
         <div class="category-link-btn">
           Explore Books <i class="fa-solid fa-arrow-right"></i>
         </div>
@@ -103,13 +104,98 @@
 
     <div class="category-card leather-card" onclick="setCatalogFilter('leather')">
       <div class="category-card-content">
-        <h3>Handcrafted Leather DIY Kits</h3>
-        <p>Pre-punched full-grain leather kits with brass tools, needle, thread & monogram alphabet stamps.</p>
+        <h3>Leather DIY Craft Kits</h3>
+        <p>Pre-punched leather kits with brass tools, needle, thread & monogram stamps.</p>
         <div class="category-link-btn">
           Explore Craft Kits <i class="fa-solid fa-arrow-right"></i>
         </div>
       </div>
       <i class="fa-solid fa-hammer category-bg-icon"></i>
+    </div>
+
+    <div class="category-card games-card" onclick="scrollToToddlerZone()">
+      <div class="category-card-content">
+        <h3>Painting & Memory Games</h3>
+        <p>Interactive digital coloring canvas and scripture matching card games for toddlers.</p>
+        <div class="category-link-btn">
+          Play & Paint <i class="fa-solid fa-gamepad"></i>
+        </div>
+      </div>
+      <i class="fa-solid fa-palette category-bg-icon"></i>
+    </div>
+  </section>
+
+  <!-- Toddler Interactive Zone (Painting Studio & Scripture Memory Game) -->
+  <section class="toddler-zone-section" id="toddlerZone">
+    <div class="section-header">
+      <div class="section-subtitle">Ages 0–5 Interactive Hub</div>
+      <h2 class="section-title">Toddler Painting Studio & Memory Matching Game</h2>
+    </div>
+
+    <!-- 1. Digital Painting & Coloring Studio -->
+    <div class="toddler-zone-card">
+      <div class="toddler-zone-header">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <i class="fa-solid fa-paint-roller" style="font-size: 1.5rem;"></i>
+          <div>
+            <h3 style="font-size: 1.3rem;">Storybook Digital Painting Canvas</h3>
+            <p style="font-size: 0.85rem; opacity: 0.9;">Paint line art scenes from "The Tiny Seed's Big Journey"!</p>
+          </div>
+        </div>
+        <button class="btn-sm-secondary" id="clearCanvasBtn" style="background: white; color: var(--text-dark);">
+          <i class="fa-solid fa-rotate-left"></i> Clear Canvas
+        </button>
+      </div>
+
+      <div class="painting-studio-grid">
+        <div class="canvas-toolbar">
+          <label class="control-label" style="color: var(--cognac-dark);">Pick Painting Color:</label>
+          <div class="color-palette">
+            <div class="palette-swatch active" data-color="#8B4513" style="background: #8B4513;" title="Leather Cognac"></div>
+            <div class="palette-swatch" data-color="#3E6B89" style="background: #3E6B89;" title="Storybook Blue"></div>
+            <div class="palette-swatch" data-color="#6B8E78" style="background: #6B8E78;" title="Sage Green"></div>
+            <div class="palette-swatch" data-color="#E07A5F" style="background: #E07A5F;" title="Terracotta Rose"></div>
+            <div class="palette-swatch" data-color="#F4C430" style="background: #F4C430;" title="Honey Sunshine"></div>
+            <div class="palette-swatch" data-color="#2A1D13" style="background: #2A1D13;" title="Espresso Dark"></div>
+          </div>
+
+          <label class="control-label" style="color: var(--cognac-dark); margin-top: 10px;">Brush Size:</label>
+          <input type="range" id="brushSize" min="4" max="28" value="12" style="accent-color: var(--cognac-primary);">
+
+          <div style="margin-top: 10px; font-size: 0.82rem; color: var(--text-muted);">
+            <i class="fa-solid fa-lightbulb"></i> Tip: Toddlers can draw finger shapes directly on mobile touchscreens or desktop mice!
+          </div>
+        </div>
+
+        <div class="canvas-container-box">
+          <canvas id="paintCanvas" width="560" height="340"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Toddler Memory & Scripture Seed Matching Game -->
+    <div class="toddler-zone-card" style="border-color: var(--toddler-coral);">
+      <div class="toddler-zone-header" style="background: linear-gradient(135deg, var(--saddle-brown), var(--cognac-primary));">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <i class="fa-solid fa-puzzle-piece" style="font-size: 1.5rem;"></i>
+          <div>
+            <h3 style="font-size: 1.3rem;">Scripture Seed Animal Memory Game</h3>
+            <p style="font-size: 0.85rem; opacity: 0.9;">Match pair cards to reveal storybook animals and scripture symbols!</p>
+          </div>
+        </div>
+        <button class="btn-sm-secondary" id="resetGameBtn" style="background: white; color: var(--text-dark);">
+          <i class="fa-solid fa-arrows-rotate"></i> Reset Cards
+        </button>
+      </div>
+
+      <div class="game-container-box">
+        <div style="text-align: center; font-weight: 700; color: var(--saddle-brown); margin-bottom: 12px;" id="gameStatus">
+          Score: <span id="gameScore">0</span> / 6 Pairs Found
+        </div>
+        <div class="memory-grid" id="memoryGrid">
+          <!-- Injected by JavaScript -->
+        </div>
+      </div>
     </div>
   </section>
 
@@ -126,6 +212,7 @@
         <button class="filter-tab active" data-filter="all">All Items</button>
         <button class="filter-tab" data-filter="storybook">📖 Storybooks (0–5)</button>
         <button class="filter-tab" data-filter="leather">🧵 Leather DIY Kits</button>
+        <button class="filter-tab" data-filter="toddler">🧸 Toddler DIY Crafts (< 5)</button>
       </div>
 
       <div class="filter-sub-group" id="subFilters">
@@ -244,12 +331,12 @@
 
       <div class="chat-modal-body" id="chatMessages">
         <div class="chat-message bot">
-          Welcome to <strong>scriptureseedsZerah</strong>! 👋 I can help you find bedtime storybooks for ages 0–5 or recommend the ideal beginner leather craft kit for family memory making. How can I help you today?
+          Welcome to <strong>scriptureseedsZerah</strong>! 👋 I can help you find bedtime storybooks for ages 0–5, toddler painting games, or recommend the ideal beginner leather craft kit. How can I help you today?
         </div>
       </div>
 
       <div class="chat-modal-input-bar">
-        <input type="text" id="chatInput" class="studio-input" style="color: var(--text-dark); background: var(--storybook-cream);" placeholder="Ask e.g. 'Bedtime story for 3yo under $40 bundle'...">
+        <input type="text" id="chatInput" class="studio-input" style="color: var(--text-dark); background: var(--storybook-cream);" placeholder="Ask e.g. 'Toddler painting games or craft kits under $30'...">
         <button class="btn-primary" id="sendChatBtn" style="padding: 10px 18px;">
           <i class="fa-solid fa-paper-plane"></i>
         </button>
@@ -308,17 +395,17 @@
           scriptureseedsZerah
         </div>
         <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); max-width: 320px;">
-          Handcrafting tangible seeds of faith through wholesome children's storybooks (ages 0–5) and DIY leathercraft kits meant to be cherished for generations.
+          Handcrafting tangible seeds of faith through wholesome children's storybooks (ages 0–5), toddler games & DIY craft kits meant to be cherished for generations.
         </p>
       </div>
 
       <div>
-        <h4 style="color: var(--gold-accent); margin-bottom: 16px;">Storybooks</h4>
+        <h4 style="color: var(--gold-accent); margin-bottom: 16px;">Storybooks & Games</h4>
         <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: rgba(255,255,255,0.8);">
           <li>Ages 0–2 Touch & Feel</li>
           <li>Ages 3–5 Bedtime Stories</li>
-          <li>Scripture Seed Memory Books</li>
-          <li>Gift Set Collections</li>
+          <li>Toddler Digital Painting Studio</li>
+          <li>Scripture Seed Memory Game</li>
         </ul>
       </div>
 
@@ -326,15 +413,15 @@
         <h4 style="color: var(--gold-accent); margin-bottom: 16px;">Leather DIY Kits</h4>
         <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: rgba(255,255,255,0.8);">
           <li>Handstitched Leather Bookmarks</li>
-          <li>Passport Travel Covers</li>
-          <li>Monogram Keychain Craft Sets</li>
+          <li>Toddler Finger Stamp Craft Sets</li>
+          <li>Wooden & Leather Animal Lacing</li>
           <li>Alphabet Brass Stamping Tools</li>
         </ul>
       </div>
 
       <div>
         <h4 style="color: var(--gold-accent); margin-bottom: 16px;">Join the Family</h4>
-        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 12px;">Receive free monthly bedtime story audio clips & crafting guides.</p>
+        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 12px;">Receive free monthly bedtime story audio clips & toddler craft guides.</p>
         <div style="display: flex; gap: 6px;">
           <input type="email" placeholder="Your email address" class="studio-input" style="font-size: 0.85rem; padding: 8px 12px;">
           <button class="btn-primary" style="padding: 8px 14px; background: var(--gold-accent); color: var(--bg-dark);">Subscribe</button>

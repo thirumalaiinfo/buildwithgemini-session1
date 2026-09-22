@@ -1,189 +1,188 @@
 export const INITIAL_CLIENTS = [
-  { id: 'cli-1', name: 'ACME Corp', slaTier: 'Gold 24/7', activeTickets: 4, health: 'Warning', contact: 'sarah.connor@acme.com' },
-  { id: 'cli-2', name: 'Globex Logistics', slaTier: 'Silver 8/5', activeTickets: 2, health: 'Healthy', contact: 'homer.s@globex.com' },
-  { id: 'cli-3', name: 'Initech Solutions', slaTier: 'Platinum 24/7', activeTickets: 1, health: 'Healthy', contact: 'peter.g@initech.com' },
-  { id: 'cli-4', name: 'Umbrella Biotech', slaTier: 'Gold 24/7', activeTickets: 3, health: 'Critical', contact: 'w.birkin@umbrella.com' },
+  { 
+    id: 'cli-1', 
+    name: 'Denali Clinical Operations - Cognizant Project', 
+    slaTier: 'Platinum 24/7 (Clinical SLA)', 
+    activeTickets: 4, 
+    health: 'Warning', 
+    contact: 'denali.ops@cognizant.com',
+    location: 'Onsite (US) / Offshore (India)'
+  }
+];
+
+export const TEAM_MEMBERS = [
+  { id: 'tm-1', name: 'Rajesh Kumar', role: 'Onsite Delivery Lead & Escalation Mgr', type: 'Onsite', location: 'Boston, USA (Onsite)', avatar: 'RK' },
+  { id: 'tm-2', name: 'Priya Sharma', role: 'Offshore L2 Infrastructure Lead', type: 'Offshore', location: 'Chennai, India (Offshore)', avatar: 'PS' },
+  { id: 'tm-3', name: 'Arun Patel', role: 'Offshore Senior Database Administrator', type: 'Offshore', location: 'Hyderabad, India (Offshore)', avatar: 'AP' },
+  { id: 'tm-4', name: 'Deepika Nair', role: 'Offshore L1 Clinical Support Analyst', type: 'Offshore', location: 'Bengaluru, India (Offshore)', avatar: 'DN' },
+  { id: 'tm-5', name: 'Siddharth Rao', role: 'Offshore Cloud & DevOps Specialist', type: 'Offshore', location: 'Pune, India (Offshore)', avatar: 'SR' }
 ];
 
 export const INITIAL_ASSETS = [
   {
     id: 'ast-1',
-    name: 'srv-acme-db01.prod',
-    type: 'Server / VM',
-    client: 'ACME Corp',
+    name: 'denali-ctms-prod.cognizant.net',
+    type: 'Application / Service',
+    client: 'Denali Clinical Operations - Cognizant Project',
     environment: 'Production',
-    ip: '10.240.12.45',
-    os: 'Ubuntu 22.04 LTS',
+    owner: 'Priya Sharma (Offshore)',
     isCritical: true,
     status: 'Degraded',
-    cpuUsage: 94,
-    memoryUsage: 88,
-    linkedService: 'ACME Payment Gateway'
+    dependentDb: 'denali-edc-oracle-db01',
+    linkedService: 'Clinical Trial Management System (CTMS)'
   },
   {
     id: 'ast-2',
-    name: 'acme_prod_postgresql',
+    name: 'denali-edc-oracle-db01',
     type: 'Database Instance',
-    client: 'ACME Corp',
+    client: 'Denali Clinical Operations - Cognizant Project',
     environment: 'Production',
-    engine: 'PostgreSQL 15.3',
+    engine: 'Oracle Enterprise 19c',
     isCritical: true,
     status: 'Healthy',
-    hostServer: 'srv-acme-db01.prod',
-    storageUsedGb: 450,
-    linkedService: 'ACME Payment Gateway'
+    hostServer: 'srv-denali-db-host01',
+    storageUsedGb: 1280,
+    linkedService: 'Electronic Data Capture (EDC)'
   },
   {
     id: 'ast-3',
-    name: 'ACME Payment Gateway',
-    type: 'Application / Service',
-    client: 'ACME Corp',
+    name: 'srv-denali-db-host01.prod',
+    type: 'Server / VM',
+    client: 'Denali Clinical Operations - Cognizant Project',
     environment: 'Production',
-    owner: 'Sarah Chen',
+    ip: '10.140.22.88',
+    os: 'RHEL 8.8 Enterprise',
     isCritical: true,
-    status: 'Degraded',
-    dependentDb: 'acme_prod_postgresql'
+    status: 'Healthy',
+    cpuUsage: 78,
+    memoryUsage: 84,
+    linkedService: 'EDC Oracle DB Host'
   },
   {
     id: 'ast-4',
-    name: 'srv-globex-app01',
-    type: 'Server / VM',
-    client: 'Globex Logistics',
-    environment: 'Production',
-    ip: '10.180.4.11',
-    os: 'RHEL 9.1',
-    isCritical: false,
-    status: 'Healthy',
-    cpuUsage: 32,
-    memoryUsage: 45,
-    linkedService: 'Globex Freight Tracking'
-  },
-  {
-    id: 'ast-5',
-    name: 'fw-umbrella-main',
+    name: 'fw-cognizant-clinical-gw',
     type: 'Network Equipment',
-    client: 'Umbrella Biotech',
+    client: 'Denali Clinical Operations - Cognizant Project',
     environment: 'Production',
-    ip: '192.168.1.1',
-    model: 'Palo Alto PA-3220',
+    ip: '192.168.10.1',
+    model: 'Cisco Firepower 4115',
     isCritical: true,
-    status: 'Critical',
-    linkedService: 'Secure Lab Access'
+    status: 'Healthy',
+    linkedService: 'Cognizant Secure HIPAA Gateway'
   }
 ];
 
 export const INITIAL_TICKETS = [
   {
-    id: 'MS-1042',
-    title: 'PostgreSQL Connection Pool Exhaustion on srv-acme-db01',
+    id: 'MS-2045',
+    title: 'CTMS Patient Enrollment API Latency & 504 Gateway Timeouts',
     level: 'Level 1 (Work Item)',
     issueType: 'Incident',
     priority: 'P1 - Critical',
-    client: 'ACME Corp',
+    client: 'Denali Clinical Operations - Cognizant Project',
     impact: 'High',
     urgency: 'High',
     status: 'In Progress',
-    assignee: 'Sarah Chen',
-    reporter: 'Monitoring Agent (Datadog)',
-    created: '2026-09-22T12:30:00Z',
-    slaFirstResponseDue: '2026-09-22T12:45:00Z',
-    slaResolutionDue: '2026-09-22T14:30:00Z',
+    assignee: 'Priya Sharma (Offshore)',
+    reporter: 'Onsite Monitoring Agent (AppDynamics)',
+    created: '2026-09-22T13:00:00Z',
+    slaFirstResponseDue: '2026-09-22T13:15:00Z',
+    slaResolutionDue: '2026-09-22T15:00:00Z',
     slaFirstResponseStatus: 'Met',
-    slaResolutionStatus: 'Warning', // Breaching soon
+    slaResolutionStatus: 'Warning',
     assetId: 'ast-1',
-    assetName: 'srv-acme-db01.prod',
-    description: 'High active connections count (>98%) resulting in HTTP 504 Gateway Timeouts on the payment gateway API.',
+    assetName: 'denali-ctms-prod.cognizant.net',
+    description: 'High response times (>4.2s) reported by Denali clinical trial coordinators during phase-III subject data synchronization.',
     subtasks: [
-      { id: 'sub-1', title: 'Capture pg_stat_activity query snapshot', completed: true },
-      { id: 'sub-2', title: 'Increase Max Connections in pgbouncer.ini', completed: true },
-      { id: 'sub-3', title: 'Gracefully restart PgBouncer service', completed: false },
-      { id: 'sub-4', title: 'Verify payment API HTTP 200 responses', completed: false }
+      { id: 'sub-1', title: 'Capture WebLogic thread pool dump', completed: true },
+      { id: 'sub-2', title: 'Verify Oracle DB session locks with Arun Patel', completed: true },
+      { id: 'sub-3', title: 'Flush cache on Cognizant Secure Gateway', completed: false },
+      { id: 'sub-4', title: 'Notify Rajesh Kumar (Onsite Lead) for client sync', completed: false }
     ],
     comments: [
-      { id: 'c1', author: 'Sarah Chen', time: '12:35 PM', text: 'Triaged incident as P1. High impact on ACME checkout API.' },
-      { id: 'c2', author: 'System Automation', time: '12:36 PM', text: '🚨 P1 Alert triggered. On-call lead Sarah Chen notified via PagerDuty.' }
+      { id: 'c1', author: 'Rajesh Kumar (Onsite)', time: '01:05 PM', text: 'Spoke with Denali IT Director. P1 outage escalated for immediate resolution.' },
+      { id: 'c2', author: 'Priya Sharma (Offshore)', time: '01:10 PM', text: 'Analyzing thread dumps from CTMS Cluster Node 02.' }
     ]
   },
   {
-    id: 'MS-1041',
-    title: 'Provision 3 New IAM Developers for Initech AWS Sandbox',
+    id: 'MS-2044',
+    title: 'Oracle EDC Database Tablespace Auto-Extend Warning (>92%)',
     level: 'Level 1 (Work Item)',
-    issueType: 'Service Request',
-    priority: 'P3 - Medium',
-    client: 'Initech Solutions',
-    impact: 'Medium',
-    urgency: 'Medium',
-    status: 'Pending Client',
-    assignee: 'Alex Rivera',
-    reporter: 'peter.g@initech.com',
-    created: '2026-09-22T09:15:00Z',
-    slaFirstResponseDue: '2026-09-22T11:15:00Z',
-    slaResolutionDue: '2026-09-23T09:15:00Z',
-    slaFirstResponseStatus: 'Met',
-    slaResolutionStatus: 'Paused',
-    assetId: 'ast-4',
-    assetName: 'srv-globex-app01',
-    description: 'Requesting access keys and Developer IAM Role for new engineering hires (Milton, Michael, Samir).',
-    subtasks: [
-      { id: 'sub-5', title: 'Verify approval from Department Lead', completed: true },
-      { id: 'sub-6', title: 'Generate temporary MFA tokens', completed: false }
-    ],
-    comments: [
-      { id: 'c3', author: 'Alex Rivera', time: '10:00 AM', text: 'Waiting for Peter to confirm security group requirements. SLA paused.' }
-    ]
-  },
-  {
-    id: 'MS-1040',
-    title: 'Palo Alto Firewall HA Failover Degradation',
-    level: 'Level 1 (Work Item)',
-    issueType: 'Incident',
+    issueType: 'Maintenance Task',
     priority: 'P2 - High',
-    client: 'Umbrella Biotech',
+    client: 'Denali Clinical Operations - Cognizant Project',
     impact: 'High',
     urgency: 'Medium',
     status: 'In Progress',
-    assignee: 'Marcus Vance',
-    reporter: 'w.birkin@umbrella.com',
-    created: '2026-09-22T11:00:00Z',
-    slaFirstResponseDue: '2026-09-22T11:30:00Z',
-    slaResolutionDue: '2026-09-22T15:00:00Z',
+    assignee: 'Arun Patel (Offshore)',
+    reporter: 'arun.p@cognizant.com',
+    created: '2026-09-22T10:30:00Z',
+    slaFirstResponseDue: '2026-09-22T11:00:00Z',
+    slaResolutionDue: '2026-09-22T14:30:00Z',
     slaFirstResponseStatus: 'Met',
     slaResolutionStatus: 'On Track',
-    assetId: 'ast-5',
-    assetName: 'fw-umbrella-main',
-    description: 'Secondary firewall node unexpectedly dropped out of High Availability cluster during sync.',
+    assetId: 'ast-2',
+    assetName: 'denali-edc-oracle-db01',
+    description: 'Tablespace TS_CLINICAL_DATA01 reached 92% threshold. Allocation needed before batch data ingest.',
     subtasks: [
-      { id: 'sub-7', title: 'Inspect PAN-OS system logs for heartbeat loss', completed: true },
-      { id: 'sub-8', title: 'Re-establish peer link interface HA2', completed: false }
+      { id: 'sub-5', title: 'Add 200GB datafile to ASM diskgroup +DATA', completed: true },
+      { id: 'sub-6', title: 'Run RMAN backup verification', completed: false }
     ],
     comments: [
-      { id: 'c4', author: 'Marcus Vance', time: '11:20 AM', text: 'Investigating interface flap on fiber link port 4.' }
+      { id: 'c3', author: 'Arun Patel (Offshore)', time: '11:15 AM', text: 'Storage extension scheduled during low-traffic window.' }
     ]
   },
   {
-    id: 'MS-1039',
-    title: 'Monthly OS Security Patching & Kernel Updates - Q3 Cycle',
-    level: 'Level 2 (Container / Epic)',
-    issueType: 'Maintenance Task',
+    id: 'MS-2043',
+    title: 'Provision Access for 5 New Clinical Research Associates (CRAs)',
+    level: 'Level 1 (Work Item)',
+    issueType: 'Service Request',
     priority: 'P3 - Medium',
-    client: 'Globex Logistics',
-    impact: 'Low',
+    client: 'Denali Clinical Operations - Cognizant Project',
+    impact: 'Medium',
+    urgency: 'Medium',
+    status: 'Pending Client',
+    assignee: 'Deepika Nair (Offshore)',
+    reporter: 'denali_cra_lead@denalibio.com',
+    created: '2026-09-22T08:45:00Z',
+    slaFirstResponseDue: '2026-09-22T10:45:00Z',
+    slaResolutionDue: '2026-09-23T08:45:00Z',
+    slaFirstResponseStatus: 'Met',
+    slaResolutionStatus: 'Paused',
+    assetId: 'ast-1',
+    assetName: 'denali-ctms-prod.cognizant.net',
+    description: 'Grant role-based access for study protocol DN-402 in CTMS portal.',
+    subtasks: [
+      { id: 'sub-7', title: 'Verify HIPAA training compliance certificates', completed: true },
+      { id: 'sub-8', title: 'Obtain approval signature from Rajesh Kumar', completed: false }
+    ],
+    comments: [
+      { id: 'c4', author: 'Deepika Nair (Offshore)', time: '09:30 AM', text: 'Awaiting training certificate verification from Denali HR.' }
+    ]
+  },
+  {
+    id: 'MS-2042',
+    title: 'Automate Daily FDA 21 CFR Part 11 Audit Log Backups',
+    level: 'Level 1 (Work Item)',
+    issueType: 'Change Request',
+    priority: 'P3 - Medium',
+    client: 'Denali Clinical Operations - Cognizant Project',
+    impact: 'Medium',
     urgency: 'Low',
     status: 'In Progress',
-    assignee: 'Jordan Taylor',
-    reporter: 'Service Delivery Manager',
-    created: '2026-09-20T08:00:00Z',
-    slaFirstResponseDue: '2026-09-20T12:00:00Z',
-    slaResolutionDue: '2026-09-25T18:00:00Z',
+    assignee: 'Siddharth Rao (Offshore)',
+    reporter: 'siddharth.r@cognizant.com',
+    created: '2026-09-21T14:00:00Z',
+    slaFirstResponseDue: '2026-09-21T16:00:00Z',
+    slaResolutionDue: '2026-09-24T14:00:00Z',
     slaFirstResponseStatus: 'Met',
     slaResolutionStatus: 'On Track',
     assetId: 'ast-4',
-    assetName: 'srv-globex-app01',
-    description: 'Standard maintenance window for updating Linux kernel patches across 12 target servers.',
+    assetName: 'fw-cognizant-clinical-gw',
+    description: 'Implement automated S3 Glacier vault sync script for audit compliance logs.',
     subtasks: [
-      { id: 'sub-9', title: 'Schedule maintenance window with client', completed: true },
-      { id: 'sub-10', title: 'Pre-patch VM snapshot creation', completed: true },
-      { id: 'sub-11', title: 'Execute dnf upgrade -y --security', completed: false }
+      { id: 'sub-9', title: 'Deploy Terraform IAM role for S3 vault', completed: true },
+      { id: 'sub-10', title: 'Test script execution in Staging', completed: true }
     ],
     comments: []
   }
@@ -191,60 +190,41 @@ export const INITIAL_TICKETS = [
 
 export const CONTRACT_EPICS = [
   {
-    id: 'EPIC-101',
-    level: 'Level 3 (Strategic Contract)',
-    title: 'ACME Corp 2026 24/7 Managed Cloud Infrastructure SOW',
-    client: 'ACME Corp',
-    slaTier: 'Gold 24/7',
+    id: 'EPIC-2026-DENALI',
+    level: 'Level 3 (Strategic SOW)',
+    title: 'Denali Clinical Operations - Cognizant 2026 Managed Services SOW',
+    client: 'Denali Clinical Operations - Cognizant Project',
+    slaTier: 'Platinum 24/7 (Clinical SLA)',
     status: 'Active',
-    budgetHours: 120,
-    usedHours: 42,
+    budgetHours: 320,
+    usedHours: 94,
     renewalDate: '2026-12-31'
-  },
-  {
-    id: 'EPIC-102',
-    level: 'Level 2 (Scope Container)',
-    title: 'Q3 Security & Patch Compliance Upgrade Cycle',
-    client: 'Globex Logistics',
-    slaTier: 'Silver 8/5',
-    status: 'In Progress',
-    budgetHours: 40,
-    usedHours: 18,
-    renewalDate: '2026-10-15'
   }
 ];
 
 export const AUTOMATION_RULES_LIST = [
   {
     id: 'rule-1',
-    name: 'MS - Auto-Calculate Priority (Impact x Urgency Matrix)',
+    name: 'Denali Clinical - Auto-Calculate Priority (Impact x Urgency)',
     status: 'Active',
     trigger: 'Issue Created / Field Changed (Impact, Urgency)',
     action: 'Set Priority to P1, P2, P3, or P4 based on severity matrix',
-    executionCount: 142
+    executionCount: 210
   },
   {
     id: 'rule-2',
-    name: 'MS - Pause SLA Clock on "Pending Client"',
+    name: 'Denali Clinical - Onsite Escalation for P1 Incidents',
     status: 'Active',
-    trigger: 'Status changed to Pending Client',
-    action: 'Pause Time to Resolution SLA timer automatically',
-    executionCount: 89
+    trigger: 'Priority set to P1 - Critical',
+    action: 'Alert Onsite Lead Rajesh Kumar & SMS PagerDuty rotation',
+    executionCount: 18
   },
   {
     id: 'rule-3',
-    name: 'MS - Reopen Ticket on Customer Response',
+    name: 'Denali Clinical - Pause SLA Clock on "Pending Client"',
     status: 'Active',
-    trigger: 'Customer adds public comment',
-    action: 'Transition status to In Progress & resume SLA clock',
-    executionCount: 76
-  },
-  {
-    id: 'rule-4',
-    name: 'MS - P1 Outage Slack & Escalation Alert',
-    status: 'Active',
-    trigger: 'Priority set to P1 - Critical',
-    action: 'Post Slack alert to #ops-escalations & notify On-Call lead',
-    executionCount: 12
+    trigger: 'Status changed to Pending Client',
+    action: 'Pause Time to Resolution SLA timer automatically',
+    executionCount: 104
   }
 ];

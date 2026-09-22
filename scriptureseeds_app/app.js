@@ -57,6 +57,45 @@ const PRODUCTS = [
     sampleText: `<h3>Page 1-2</h3><p>"Little Lamb heard a rustle in the grass. But then he remembered his Shepherd's kind voice: 'I am right here beside you!'"</p>`
   },
   {
+    id: "toddler-diy-1",
+    type: "toddler",
+    title: "Toddler Finger Leather Stamp Kit",
+    category: "Toddler Crafts (< 5)",
+    age: "0-2",
+    ageLabel: "Ages 2–5 Toddler DIY",
+    price: 22.00,
+    image: "assets/hero_showcase.png",
+    description: "Non-toxic washable ink pads, soft pre-cut leather shapes (crosses, hearts, lambs) for safe toddler finger stamping.",
+    scripture: "Safe parent-toddler crafting experience.",
+    kitIncludes: ["4 Washable Ink Pads", "10 Soft Leather Cutouts", "Keepsake Display Frame"]
+  },
+  {
+    id: "toddler-diy-2",
+    type: "toddler",
+    title: "Soft Leather & Felt Weaving Mat",
+    category: "Toddler Crafts (< 5)",
+    age: "3-5",
+    ageLabel: "Ages 3–5 Fine Motor",
+    price: 19.50,
+    image: "assets/hero_showcase.png",
+    description: "Pre-punched soft leather mats with colorful felt strips designed to develop toddlers' fine motor skills.",
+    scripture: "Builds hand-eye coordination & creativity.",
+    kitIncludes: ["Pre-punched Soft Leather Base", "12 Rainbow Felt Weaving Strips"]
+  },
+  {
+    id: "toddler-diy-3",
+    type: "toddler",
+    title: "Bible Animal Leather Lacing Cards",
+    category: "Toddler Crafts (< 5)",
+    age: "3-5",
+    ageLabel: "Ages 3–5 Lacing Set",
+    price: 21.00,
+    image: "assets/hero_showcase.png",
+    description: "Chunky wooden animal shapes backed with full-grain leather and thick cotton lacing cords.",
+    scripture: "Noah's Ark animal theme for toddlers.",
+    kitIncludes: ["5 Leather & Wooden Cards (Lamb, Dove, Lion)", "4 Colorful Cotton Laces"]
+  },
+  {
     id: "leather-1",
     type: "leather",
     title: "Leather Bookmark DIY Craft Kit",
@@ -124,6 +163,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initBundleBuilder();
   initConciergeModal();
   initCartDrawer();
+  initPaintingStudio();
+  initMemoryGame();
 });
 
 /* Navigation & Smooth Scroll */
@@ -155,6 +196,10 @@ function setCatalogFilter(filter) {
   document.getElementById("catalogSection").scrollIntoView({ behavior: "smooth" });
 }
 
+function scrollToToddlerZone() {
+  document.getElementById("toddlerZone").scrollIntoView({ behavior: "smooth" });
+}
+
 /* Catalog Filtering & Rendering */
 function initCatalogFilters() {
   const tabs = document.querySelectorAll(".filter-tab");
@@ -182,6 +227,7 @@ function renderProducts() {
     // Type Filter
     if (currentFilter === "storybook" && p.type !== "storybook") return false;
     if (currentFilter === "leather" && p.type !== "leather") return false;
+    if (currentFilter === "toddler" && p.type !== "toddler") return false;
 
     // Age / Level Sub-filter
     if (currentAgeFilter === "0-2" && p.age !== "0-2") return false;
@@ -201,8 +247,11 @@ function renderProducts() {
     const card = document.createElement("div");
     card.className = "product-card";
 
-    const badgeClass = p.type === "storybook" ? "storybook" : "leather";
-    const badgeText = p.type === "storybook" ? p.ageLabel : p.levelLabel;
+    let badgeClass = "storybook";
+    if (p.type === "leather") badgeClass = "leather";
+    if (p.type === "toddler") badgeClass = "toddler";
+
+    const badgeText = p.ageLabel || p.levelLabel;
 
     card.innerHTML = `
       <div class="product-image-container">
@@ -212,7 +261,7 @@ function renderProducts() {
       <div class="product-body">
         <div class="product-meta">
           <span class="product-meta-item">
-            <i class="fa-solid ${p.type === 'storybook' ? 'fa-book-open' : 'fa-hammer'}"></i>
+            <i class="fa-solid ${p.type === 'storybook' ? 'fa-book-open' : p.type === 'toddler' ? 'fa-icons' : 'fa-hammer'}"></i>
             ${p.category}
           </span>
         </div>
@@ -278,6 +327,185 @@ function scrollToStudio() {
   document.getElementById("studioSection").scrollIntoView({ behavior: "smooth" });
 }
 
+/* ==========================================================================
+   TODDLER DIGITAL PAINTING STUDIO CANVAS (AGES 0-5)
+   ========================================================================== */
+function initPaintingStudio() {
+  const canvas = document.getElementById("paintCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const swatches = document.querySelectorAll(".palette-swatch");
+  const brushSizeInput = document.getElementById("brushSize");
+  const clearBtn = document.getElementById("clearCanvasBtn");
+
+  let painting = false;
+  let currentColor = "#8B4513";
+  let brushSize = 12;
+
+  // Draw initial scene sketch outline (A little sprout seed!)
+  resetCanvasOutline();
+
+  function resetCanvasOutline() {
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw gentle background outline for toddler coloring
+    ctx.strokeStyle = "#D1D5DB";
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    // Soil line
+    ctx.moveTo(40, 260);
+    ctx.quadraticCurveTo(280, 240, 520, 260);
+    // Sprout Stem
+    ctx.moveTo(280, 250);
+    ctx.quadraticCurveTo(280, 160, 280, 120);
+    // Left leaf
+    ctx.moveTo(280, 160);
+    ctx.quadraticCurveTo(210, 130, 240, 190);
+    ctx.quadraticCurveTo(260, 180, 280, 160);
+    // Right leaf
+    ctx.moveTo(280, 140);
+    ctx.quadraticCurveTo(350, 110, 320, 170);
+    ctx.quadraticCurveTo(300, 160, 280, 140);
+    // Sun
+    ctx.arc(450, 70, 35, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.fillStyle = "#9CA3AF";
+    ctx.font = "14px 'Plus Jakarta Sans', sans-serif";
+    ctx.fillText("🎨 Color 'The Tiny Seed' Sprout!", 20, 30);
+  }
+
+  swatches.forEach(s => {
+    s.addEventListener("click", () => {
+      swatches.forEach(sw => sw.classList.remove("active"));
+      s.classList.add("active");
+      currentColor = s.getAttribute("data-color");
+    });
+  });
+
+  brushSizeInput.addEventListener("input", (e) => {
+    brushSize = e.target.value;
+  });
+
+  clearBtn.addEventListener("click", resetCanvasOutline);
+
+  function startPosition(e) {
+    painting = true;
+    draw(e);
+  }
+
+  function endPosition() {
+    painting = false;
+    ctx.beginPath();
+  }
+
+  function draw(e) {
+    if (!painting) return;
+    const rect = canvas.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+
+    ctx.lineWidth = brushSize;
+    ctx.lineCap = "round";
+    ctx.strokeStyle = currentColor;
+
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+  }
+
+  canvas.addEventListener("mousedown", startPosition);
+  canvas.addEventListener("mouseup", endPosition);
+  canvas.addEventListener("mousemove", draw);
+
+  canvas.addEventListener("touchstart", startPosition);
+  canvas.addEventListener("touchend", endPosition);
+  canvas.addEventListener("touchmove", draw);
+}
+
+/* ==========================================================================
+   TODDLER SCRIPTURE MEMORY MATCHING GAME (AGES 0-5)
+   ========================================================================== */
+function initMemoryGame() {
+  const grid = document.getElementById("memoryGrid");
+  const scoreDisplay = document.getElementById("gameScore");
+  const resetBtn = document.getElementById("resetGameBtn");
+  if (!grid) return;
+
+  const cardIcons = ["🌱", "🐑", "📖", "🕊️", "⭐", "🎨"];
+  let cardsData = [...cardIcons, ...cardIcons]; // 12 cards (6 pairs)
+  let flippedCards = [];
+  let matchedPairs = 0;
+
+  function shuffle(array) {
+    return array.sort(() => Math.random() - 0.5);
+  }
+
+  function buildBoard() {
+    grid.innerHTML = "";
+    flippedCards = [];
+    matchedPairs = 0;
+    scoreDisplay.innerText = "0";
+
+    const shuffled = shuffle([...cardsData]);
+    shuffled.forEach((icon, idx) => {
+      const card = document.createElement("div");
+      card.className = "memory-card";
+      card.setAttribute("data-icon", icon);
+      card.setAttribute("data-id", idx);
+      card.innerText = "❓";
+
+      card.addEventListener("click", () => handleCardClick(card));
+      grid.appendChild(card);
+    });
+  }
+
+  function handleCardClick(card) {
+    if (card.classList.contains("flipped") || card.classList.contains("matched") || flippedCards.length === 2) {
+      return;
+    }
+
+    card.classList.add("flipped");
+    card.innerText = card.getAttribute("data-icon");
+    flippedCards.push(card);
+
+    if (flippedCards.length === 2) {
+      const [card1, card2] = flippedCards;
+      if (card1.getAttribute("data-icon") === card2.getAttribute("data-icon")) {
+        // Match!
+        card1.classList.add("matched");
+        card2.classList.add("matched");
+        matchedPairs += 1;
+        scoreDisplay.innerText = matchedPairs;
+        flippedCards = [];
+
+        if (matchedPairs === 6) {
+          setTimeout(() => {
+            alert("🌟 Wonderful job! You matched all scripture seed animals!");
+          }, 300);
+        }
+      } else {
+        // No match
+        setTimeout(() => {
+          card1.classList.remove("flipped");
+          card2.classList.remove("flipped");
+          card1.innerText = "❓";
+          card2.innerText = "❓";
+          flippedCards = [];
+        }, 900);
+      }
+    }
+  }
+
+  resetBtn.addEventListener("click", buildBoard);
+  buildBoard();
+}
+
 /* Monogram Visualizer Studio */
 function initMonogramStudio() {
   const inputInitials = document.getElementById("inputInitials");
@@ -315,7 +543,7 @@ function initBundleBuilder() {
   const addBundleBtn = document.getElementById("addBundleBtn");
 
   const books = PRODUCTS.filter(p => p.type === "storybook");
-  const leathers = PRODUCTS.filter(p => p.type === "leather");
+  const leathers = PRODUCTS.filter(p => p.type === "leather" || p.type === "toddler");
 
   books.forEach(b => {
     const opt = document.createElement("option");
@@ -410,16 +638,16 @@ function initConciergeModal() {
   function getAIResponse(query) {
     const q = query.toLowerCase();
 
-    if (q.includes("bedtime") || q.includes("sleep") || q.includes("night")) {
+    if (q.includes("game") || q.includes("paint") || q.includes("color") || q.includes("toddler")) {
+      return `🎨 Check out our new **Toddler Zone (Ages 0–5)**! Your child can paint storybook character outlines on our **Digital Painting Canvas** or play the **Scripture Seed Memory Matching Game** right on the site!`;
+    } else if (q.includes("bedtime") || q.includes("sleep") || q.includes("night")) {
       return `For bedtime reading for children under 5, I highly recommend <strong>Nightlight Blessings Bedtime Book</strong> ($18.00). It features soft watercolor artwork and peaceful Psalm 4:8 bedtime prayers! 🌙 Pair it with a custom leather bookmark kit for the ideal gift bundle.`;
     } else if (q.includes("gift") || q.includes("bundle") || q.includes("under 40") || q.includes("$40")) {
-      return `🎁 Our most popular gift bundle is <strong>The Tiny Seed's Big Journey</strong> ($16.00) paired with the <strong>Leather Bookmark DIY Kit</strong> ($24.00). Together with our 20% bundle discount, the total is just <strong>$32.00</strong>! Would you like me to add this gift set to your basket?`;
+      return `🎁 Our most popular gift bundle is <strong>The Tiny Seed's Big Journey</strong> ($16.00) paired with the <strong>Leather Bookmark DIY Kit</strong> ($24.00). Together with our 20% bundle discount, the total is just <strong>$32.00</strong>!`;
     } else if (q.includes("leather") || q.includes("craft") || q.includes("beginner")) {
-      return `🧵 If you are new to leathercrafting, our <strong>Handcrafted Leather Bookmark DIY Kit</strong> ($24.00) or <strong>Monogram Key Fob Kit</strong> ($18.00) are beginner-friendly (20-30 mins). Both come with pre-punched full-grain leather, wax thread, needles, and alphabet brass stamp guides!`;
-    } else if (q.includes("age") || q.includes("3") || q.includes("2") || q.includes("toddler")) {
-      return `For toddlers ages 0–2, <em>The Tiny Seed's Big Journey</em> and <em>Nightlight Blessings</em> feature big bold illustrations and short sentences. For ages 3–5, <em>God's Colorful World</em> and <em>The Brave Little Lamb</em> offer engaging faith narratives!`;
+      return `🧵 For little hands, try our <strong>Toddler Finger Leather Stamp Kit</strong> ($22.00) with non-toxic washables! For adults & older kids, our <strong>Handcrafted Leather Bookmark DIY Kit</strong> ($24.00) is beginner friendly.`;
     } else {
-      return `Thank you for asking! Under **scriptureseedsZerah**, we craft wholesome storybooks for ages 0–5 and personalized leather DIY kits. You can customize initials in our Live Monogram Studio or save 20% by building a storybook + leather kit gift bundle!`;
+      return `Thank you for asking! Under **scriptureseedsZerah**, we craft wholesome storybooks for ages 0–5, toddler DIY craft kits, digital painting games, and personalized leathercraft kits.`;
     }
   }
 }
@@ -439,7 +667,7 @@ function initCartDrawer() {
       alert("Your basket is empty! Add items from our catalog or gift bundle builder.");
       return;
     }
-    alert("🎉 Order Submitted! Thank you for choosing scriptureseedsZerah. Your customized storybooks and leather DIY kits are being prepared with love.");
+    alert("🎉 Order Submitted! Thank you for choosing scriptureseedsZerah. Your customized storybooks, games & leather craft kits are being prepared with love.");
     cart = [];
     updateCartUI();
     drawer.classList.remove("active");
@@ -459,7 +687,7 @@ function addToCart(productId) {
       title: product.title,
       price: product.price,
       image: product.image,
-      details: product.type === 'storybook' ? product.ageLabel : product.levelLabel,
+      details: product.ageLabel || product.levelLabel,
       qty: 1
     });
   }
