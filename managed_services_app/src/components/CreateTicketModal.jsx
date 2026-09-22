@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { X, Plus, ShieldCheck } from 'lucide-react';
 
 export default function CreateTicketModal({ clients, assets, onClose, onCreate }) {
-  const [client, setClient] = useState(clients[0]?.name || 'ACME Corp');
+  const [client, setClient] = useState(clients[0]?.name || 'Denali Clinical Operations - Cognizant Project');
   const [title, setTitle] = useState('');
   const [level, setLevel] = useState('Level 1 (Work Item)');
   const [issueType, setIssueType] = useState('Incident');
   const [impact, setImpact] = useState('High');
   const [urgency, setUrgency] = useState('High');
   const [assetId, setAssetId] = useState('');
-  const [assignee, setAssignee] = useState('Sarah Chen');
+  const [assignee, setAssignee] = useState('Thiru (Tableau Specialist)');
   const [description, setDescription] = useState('');
 
   // Filter assets for selected client
@@ -146,7 +146,7 @@ export default function CreateTicketModal({ clients, assets, onClose, onCreate }
             <input
               type="text"
               required
-              placeholder="e.g. Memory leak on API gateway server"
+              placeholder="e.g. Tableau extract latency on Reltio MDM pipeline"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               style={{ width: '100%', padding: '0.55rem', background: 'var(--bg-input)', border: '1px solid var(--border-color)', borderRadius: '8px', color: '#fff', fontSize: '0.85rem' }}
@@ -176,10 +176,11 @@ export default function CreateTicketModal({ clients, assets, onClose, onCreate }
                 onChange={(e) => setAssignee(e.target.value)}
                 style={{ width: '100%', padding: '0.55rem', background: 'var(--bg-input)', border: '1px solid var(--border-color)', borderRadius: '8px', color: '#fff', fontSize: '0.85rem' }}
               >
-                <option value="Sarah Chen">Sarah Chen (Ops Lead)</option>
-                <option value="Marcus Vance">Marcus Vance (Cloud Arch)</option>
-                <option value="Alex Rivera">Alex Rivera (L1 Support)</option>
-                <option value="Jordan Taylor">Jordan Taylor (DBA)</option>
+                <option value="Narayan (Onsite Lead)">Narayan (Onsite Lead)</option>
+                <option value="Thiru (Tableau Specialist)">Thiru (Tableau Specialist)</option>
+                <option value="Partha (Reltio MDM)">Partha (Reltio MDM)</option>
+                <option value="Bharath (ETL Developer)">Bharath (ETL Developer)</option>
+                <option value="Satish (Workato Integration)">Satish (Workato Integration)</option>
               </select>
             </div>
           </div>

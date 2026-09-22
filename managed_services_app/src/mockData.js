@@ -11,11 +11,11 @@ export const INITIAL_CLIENTS = [
 ];
 
 export const TEAM_MEMBERS = [
-  { id: 'tm-1', name: 'Rajesh Kumar', role: 'Onsite Delivery Lead & Escalation Mgr', type: 'Onsite', location: 'Boston, USA (Onsite)', avatar: 'RK' },
-  { id: 'tm-2', name: 'Priya Sharma', role: 'Offshore L2 Infrastructure Lead', type: 'Offshore', location: 'Chennai, India (Offshore)', avatar: 'PS' },
-  { id: 'tm-3', name: 'Arun Patel', role: 'Offshore Senior Database Administrator', type: 'Offshore', location: 'Hyderabad, India (Offshore)', avatar: 'AP' },
-  { id: 'tm-4', name: 'Deepika Nair', role: 'Offshore L1 Clinical Support Analyst', type: 'Offshore', location: 'Bengaluru, India (Offshore)', avatar: 'DN' },
-  { id: 'tm-5', name: 'Siddharth Rao', role: 'Offshore Cloud & DevOps Specialist', type: 'Offshore', location: 'Pune, India (Offshore)', avatar: 'SR' }
+  { id: 'tm-1', name: 'Narayan', role: 'Onsite Delivery Lead & Escalation Mgr', type: 'Onsite', location: 'Onsite Lead', avatar: 'N' },
+  { id: 'tm-2', name: 'Thiru', role: 'Offshore Tableau Analytics Specialist', type: 'Offshore', location: 'Offshore Team', avatar: 'T' },
+  { id: 'tm-3', name: 'Partha', role: 'Offshore Reltio MDM Specialist', type: 'Offshore', location: 'Offshore Team', avatar: 'P' },
+  { id: 'tm-4', name: 'Bharath', role: 'Offshore ETL Developer & Data Engineer', type: 'Offshore', location: 'Offshore Team', avatar: 'B' },
+  { id: 'tm-5', name: 'Satish', role: 'Offshore Workato Integration Specialist', type: 'Offshore', location: 'Offshore Team', avatar: 'S' }
 ];
 
 export const INITIAL_ASSETS = [
@@ -25,7 +25,7 @@ export const INITIAL_ASSETS = [
     type: 'Application / Service',
     client: 'Denali Clinical Operations - Cognizant Project',
     environment: 'Production',
-    owner: 'Priya Sharma (Offshore)',
+    owner: 'Thiru (Tableau)',
     isCritical: true,
     status: 'Degraded',
     dependentDb: 'denali-edc-oracle-db01',
@@ -33,20 +33,20 @@ export const INITIAL_ASSETS = [
   },
   {
     id: 'ast-2',
-    name: 'denali-edc-oracle-db01',
+    name: 'denali-reltio-mdm-prod',
     type: 'Database Instance',
     client: 'Denali Clinical Operations - Cognizant Project',
     environment: 'Production',
-    engine: 'Oracle Enterprise 19c',
+    engine: 'Reltio Connected Data Platform',
     isCritical: true,
     status: 'Healthy',
-    hostServer: 'srv-denali-db-host01',
-    storageUsedGb: 1280,
-    linkedService: 'Electronic Data Capture (EDC)'
+    hostServer: 'srv-denali-mdm-host01',
+    storageUsedGb: 1450,
+    linkedService: 'Reltio Master Data Management (MDM)'
   },
   {
     id: 'ast-3',
-    name: 'srv-denali-db-host01.prod',
+    name: 'srv-denali-etl-host01.prod',
     type: 'Server / VM',
     client: 'Denali Clinical Operations - Cognizant Project',
     environment: 'Production',
@@ -56,26 +56,26 @@ export const INITIAL_ASSETS = [
     status: 'Healthy',
     cpuUsage: 78,
     memoryUsage: 84,
-    linkedService: 'EDC Oracle DB Host'
+    linkedService: 'Bharath ETL Batch Pipeline'
   },
   {
     id: 'ast-4',
-    name: 'fw-cognizant-clinical-gw',
+    name: 'workato-cognizant-clinical-gw',
     type: 'Network Equipment',
     client: 'Denali Clinical Operations - Cognizant Project',
     environment: 'Production',
     ip: '192.168.10.1',
-    model: 'Cisco Firepower 4115',
+    model: 'Workato Enterprise Gateway',
     isCritical: true,
     status: 'Healthy',
-    linkedService: 'Cognizant Secure HIPAA Gateway'
+    linkedService: 'Satish Workato Integration Recipes'
   }
 ];
 
 export const INITIAL_TICKETS = [
   {
     id: 'MS-2045',
-    title: 'CTMS Patient Enrollment API Latency & 504 Gateway Timeouts',
+    title: 'CTMS Tableau Executive Dashboard Data Sync Latency',
     level: 'Level 1 (Work Item)',
     issueType: 'Incident',
     priority: 'P1 - Critical',
@@ -83,8 +83,8 @@ export const INITIAL_TICKETS = [
     impact: 'High',
     urgency: 'High',
     status: 'In Progress',
-    assignee: 'Priya Sharma (Offshore)',
-    reporter: 'Onsite Monitoring Agent (AppDynamics)',
+    assignee: 'Thiru (Tableau Specialist)',
+    reporter: 'Narayan (Onsite Lead)',
     created: '2026-09-22T13:00:00Z',
     slaFirstResponseDue: '2026-09-22T13:15:00Z',
     slaResolutionDue: '2026-09-22T15:00:00Z',
@@ -92,21 +92,21 @@ export const INITIAL_TICKETS = [
     slaResolutionStatus: 'Warning',
     assetId: 'ast-1',
     assetName: 'denali-ctms-prod.cognizant.net',
-    description: 'High response times (>4.2s) reported by Denali clinical trial coordinators during phase-III subject data synchronization.',
+    description: 'Tableau Server extracts failing for Denali Clinical Trial metrics dashboard.',
     subtasks: [
-      { id: 'sub-1', title: 'Capture WebLogic thread pool dump', completed: true },
-      { id: 'sub-2', title: 'Verify Oracle DB session locks with Arun Patel', completed: true },
-      { id: 'sub-3', title: 'Flush cache on Cognizant Secure Gateway', completed: false },
-      { id: 'sub-4', title: 'Notify Rajesh Kumar (Onsite Lead) for client sync', completed: false }
+      { id: 'sub-1', title: 'Inspect Tableau Backgrounder log pool', completed: true },
+      { id: 'sub-2', title: 'Verify Reltio MDM API connectivity with Partha', completed: true },
+      { id: 'sub-3', title: 'Clear Workato webhook cache with Satish', completed: false },
+      { id: 'sub-4', title: 'Provide status update to Narayan (Onsite Lead)', completed: false }
     ],
     comments: [
-      { id: 'c1', author: 'Rajesh Kumar (Onsite)', time: '01:05 PM', text: 'Spoke with Denali IT Director. P1 outage escalated for immediate resolution.' },
-      { id: 'c2', author: 'Priya Sharma (Offshore)', time: '01:10 PM', text: 'Analyzing thread dumps from CTMS Cluster Node 02.' }
+      { id: 'c1', author: 'Narayan (Onsite)', time: '01:05 PM', text: 'P1 outage escalated. Denali leadership requesting live dashboard sync.' },
+      { id: 'c2', author: 'Thiru (Tableau)', time: '01:10 PM', text: 'Analyzing Tableau extract refresh logs and data source connections.' }
     ]
   },
   {
     id: 'MS-2044',
-    title: 'Oracle EDC Database Tablespace Auto-Extend Warning (>92%)',
+    title: 'Reltio MDM Subject Master Data Synchronization Alert',
     level: 'Level 1 (Work Item)',
     issueType: 'Maintenance Task',
     priority: 'P2 - High',
@@ -114,77 +114,76 @@ export const INITIAL_TICKETS = [
     impact: 'High',
     urgency: 'Medium',
     status: 'In Progress',
-    assignee: 'Arun Patel (Offshore)',
-    reporter: 'arun.p@cognizant.com',
+    assignee: 'Partha (Reltio MDM)',
+    reporter: 'partha@cognizant.com',
     created: '2026-09-22T10:30:00Z',
     slaFirstResponseDue: '2026-09-22T11:00:00Z',
     slaResolutionDue: '2026-09-22T14:30:00Z',
     slaFirstResponseStatus: 'Met',
     slaResolutionStatus: 'On Track',
     assetId: 'ast-2',
-    assetName: 'denali-edc-oracle-db01',
-    description: 'Tablespace TS_CLINICAL_DATA01 reached 92% threshold. Allocation needed before batch data ingest.',
+    assetName: 'denali-reltio-mdm-prod',
+    description: 'Patient entity resolution queue bottleneck on Reltio tenant.',
     subtasks: [
-      { id: 'sub-5', title: 'Add 200GB datafile to ASM diskgroup +DATA', completed: true },
-      { id: 'sub-6', title: 'Run RMAN backup verification', completed: false }
+      { id: 'sub-5', title: 'Increase Reltio batch match rule threads', completed: true },
+      { id: 'sub-6', title: 'Coordinate with Bharath on ETL delta load', completed: false }
     ],
     comments: [
-      { id: 'c3', author: 'Arun Patel (Offshore)', time: '11:15 AM', text: 'Storage extension scheduled during low-traffic window.' }
+      { id: 'c3', author: 'Partha (Reltio)', time: '11:15 AM', text: 'Match engine tuning under review.' }
     ]
   },
   {
     id: 'MS-2043',
-    title: 'Provision Access for 5 New Clinical Research Associates (CRAs)',
+    title: 'ETL Pipeline Nightly Subject Batch Load Optimization',
     level: 'Level 1 (Work Item)',
     issueType: 'Service Request',
     priority: 'P3 - Medium',
     client: 'Denali Clinical Operations - Cognizant Project',
     impact: 'Medium',
     urgency: 'Medium',
-    status: 'Pending Client',
-    assignee: 'Deepika Nair (Offshore)',
-    reporter: 'denali_cra_lead@denalibio.com',
+    status: 'In Progress',
+    assignee: 'Bharath (ETL Developer)',
+    reporter: 'bharath@cognizant.com',
     created: '2026-09-22T08:45:00Z',
     slaFirstResponseDue: '2026-09-22T10:45:00Z',
     slaResolutionDue: '2026-09-23T08:45:00Z',
     slaFirstResponseStatus: 'Met',
-    slaResolutionStatus: 'Paused',
-    assetId: 'ast-1',
-    assetName: 'denali-ctms-prod.cognizant.net',
-    description: 'Grant role-based access for study protocol DN-402 in CTMS portal.',
+    slaResolutionStatus: 'On Track',
+    assetId: 'ast-3',
+    assetName: 'srv-denali-etl-host01.prod',
+    description: 'Optimize PySpark & Informatica ETL workflow for Denali Subject Study ingestion.',
     subtasks: [
-      { id: 'sub-7', title: 'Verify HIPAA training compliance certificates', completed: true },
-      { id: 'sub-8', title: 'Obtain approval signature from Rajesh Kumar', completed: false }
+      { id: 'sub-7', title: 'Verify source staging schema constraints', completed: true },
+      { id: 'sub-8', title: 'Validate output format with Thiru for Tableau reporting', completed: false }
     ],
-    comments: [
-      { id: 'c4', author: 'Deepika Nair (Offshore)', time: '09:30 AM', text: 'Awaiting training certificate verification from Denali HR.' }
-    ]
+    comments: []
   },
   {
     id: 'MS-2042',
-    title: 'Automate Daily FDA 21 CFR Part 11 Audit Log Backups',
+    title: 'Workato Integration Recipe Rate Limit Optimization',
     level: 'Level 1 (Work Item)',
     issueType: 'Change Request',
     priority: 'P3 - Medium',
     client: 'Denali Clinical Operations - Cognizant Project',
     impact: 'Medium',
     urgency: 'Low',
-    status: 'In Progress',
-    assignee: 'Siddharth Rao (Offshore)',
-    reporter: 'siddharth.r@cognizant.com',
+    status: 'Pending Client',
+    assignee: 'Satish (Workato Integration)',
+    reporter: 'satish@cognizant.com',
     created: '2026-09-21T14:00:00Z',
     slaFirstResponseDue: '2026-09-21T16:00:00Z',
     slaResolutionDue: '2026-09-24T14:00:00Z',
     slaFirstResponseStatus: 'Met',
-    slaResolutionStatus: 'On Track',
+    slaResolutionStatus: 'Paused',
     assetId: 'ast-4',
-    assetName: 'fw-cognizant-clinical-gw',
-    description: 'Implement automated S3 Glacier vault sync script for audit compliance logs.',
+    assetName: 'workato-cognizant-clinical-gw',
+    description: 'Tune Workato HTTP connector retry backoff for Clinical Site API.',
     subtasks: [
-      { id: 'sub-9', title: 'Deploy Terraform IAM role for S3 vault', completed: true },
-      { id: 'sub-10', title: 'Test script execution in Staging', completed: true }
+      { id: 'sub-9', title: 'Deploy updated Workato recipe package v2.4', completed: true }
     ],
-    comments: []
+    comments: [
+      { id: 'c4', author: 'Satish (Workato)', time: '02:30 PM', text: 'Waiting for Denali API rate limit approval.' }
+    ]
   }
 ];
 
@@ -213,10 +212,10 @@ export const AUTOMATION_RULES_LIST = [
   },
   {
     id: 'rule-2',
-    name: 'Denali Clinical - Onsite Escalation for P1 Incidents',
+    name: 'Denali Clinical - Onsite Escalation to Narayan',
     status: 'Active',
     trigger: 'Priority set to P1 - Critical',
-    action: 'Alert Onsite Lead Rajesh Kumar & SMS PagerDuty rotation',
+    action: 'Alert Onsite Lead Narayan & SMS PagerDuty rotation',
     executionCount: 18
   },
   {
