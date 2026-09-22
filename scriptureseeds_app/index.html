@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>scriptureseedsZerah | Leather DIY Kits & Children's Storybooks (0-5)</title>
+  <meta name="description" content="Discover wholesome bedtime storybooks for ages 0-5 and handcrafted leathercraft DIY kits under scriptureseedsZerah. Personalize with monograms and custom scripture stamps.">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Font Awesome Icons for rich UI -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <span class="badge">Special Gift Bundle</span>
+    <span>Pair any Bedtime Storybook with a Leather Bookmark DIY Kit & Save 20%!</span>
+  </div>
+
+  <!-- Main Navigation -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="#" class="logo-container">
+        <div class="logo-icon">
+          <i class="fa-solid fa-seedling"></i>
+        </div>
+        <div>
+          <div class="logo-text brand-title">scriptureseedsZerah</div>
+          <div class="logo-tagline">Faith • Storybooks • Leathercraft</div>
+        </div>
+      </a>
+    </div>
+
+    <ul class="nav-links">
+      <li><a class="nav-link active" data-filter="all">All Catalog</a></li>
+      <li><a class="nav-link" data-filter="storybook">Storybooks (0–5)</a></li>
+      <li><a class="nav-link" data-filter="leather">Leather DIY Kits</a></li>
+      <li><a class="nav-link" href="#studioSection">Monogram Studio</a></li>
+      <li><a class="nav-link" href="#bundleSection">Gift Bundles</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="btn-concierge" id="openChatBtn">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <span>AI Concierge</span>
+      </button>
+
+      <button class="btn-icon" id="cartBtn" title="Shopping Cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Showcase Section -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <div class="hero-pill">
+        <i class="fa-solid fa-heart"></i> Handcrafted for Growing Hearts & Minds
+      </div>
+      <h1 class="hero-title">
+        Wholesome Bedtime Stories & <span>Leather DIY Craft Kits</span>
+      </h1>
+      <p class="hero-description">
+        Planting seeds of faith, wisdom, and creativity. Explore our illustrated children's storybooks for toddlers (ages 0–5) and premium full-grain leather DIY kits designed to create lasting heirloom gifts.
+      </p>
+      <div class="hero-actions">
+        <a href="#catalogSection" class="btn-primary" onclick="setCatalogFilter('storybook')">
+          <i class="fa-solid fa-book-open"></i> Browse Storybooks
+        </a>
+        <a href="#catalogSection" class="btn-secondary" onclick="setCatalogFilter('leather')">
+          <i class="fa-solid fa-scissors"></i> Discover Leather Kits
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-image-wrapper">
+      <img src="assets/hero_showcase.png" alt="scriptureseedsZerah Leather Bookmark and Children Storybook">
+      <div class="hero-floating-badge">
+        <div class="badge-icon">
+          <i class="fa-solid fa-award"></i>
+        </div>
+        <div>
+          <div class="badge-title">Personalized Heirloom</div>
+          <div class="badge-sub">Includes Custom Monogram & Scripture Stamp</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Category Dual Cards -->
+  <section class="categories-showcase">
+    <div class="category-card storybooks-card" onclick="setCatalogFilter('storybook')">
+      <div class="category-card-content">
+        <h3>Children's Storybooks (Ages 0–5)</h3>
+        <p>Short bedtime tales, vivid watercolor art, and foundational Scripture seeds for little hearts.</p>
+        <div class="category-link-btn">
+          Explore Books <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </div>
+      <i class="fa-solid fa-book-bookmark category-bg-icon"></i>
+    </div>
+
+    <div class="category-card leather-card" onclick="setCatalogFilter('leather')">
+      <div class="category-card-content">
+        <h3>Handcrafted Leather DIY Kits</h3>
+        <p>Pre-punched full-grain leather kits with brass tools, needle, thread & monogram alphabet stamps.</p>
+        <div class="category-link-btn">
+          Explore Craft Kits <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </div>
+      <i class="fa-solid fa-hammer category-bg-icon"></i>
+    </div>
+  </section>
+
+  <!-- Main Product Catalog -->
+  <section class="catalog-section" id="catalogSection">
+    <div class="section-header">
+      <div class="section-subtitle">Curated Collection</div>
+      <h2 class="section-title">Explore Our Storybooks & Craft Kits</h2>
+    </div>
+
+    <!-- Filter Control Bar -->
+    <div class="filter-bar">
+      <div class="filter-tabs" id="catalogTabs">
+        <button class="filter-tab active" data-filter="all">All Items</button>
+        <button class="filter-tab" data-filter="storybook">📖 Storybooks (0–5)</button>
+        <button class="filter-tab" data-filter="leather">🧵 Leather DIY Kits</button>
+      </div>
+
+      <div class="filter-sub-group" id="subFilters">
+        <span class="filter-label">Filter:</span>
+        <select class="filter-select" id="ageFilter">
+          <option value="all">All Ages / Levels</option>
+          <option value="0-2">Ages 0–2 Years</option>
+          <option value="3-5">Ages 3–5 Years</option>
+          <option value="beginner">Beginner DIY</option>
+          <option value="intermediate">Intermediate DIY</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Dynamic Product Cards Grid -->
+    <div class="product-grid" id="productGrid">
+      <!-- Injected via JavaScript -->
+    </div>
+  </section>
+
+  <!-- Monogram Visualizer Studio -->
+  <section class="studio-section" id="studioSection">
+    <div class="studio-container">
+      <div class="studio-preview-box">
+        <div class="leather-preview-canvas" id="leatherCanvas">
+          <div class="leather-monogram-text" id="canvasInitials">E.M.</div>
+          <div class="leather-scripture-stamp" id="canvasScripture">"Plant seeds of faith"</div>
+        </div>
+      </div>
+
+      <div class="studio-controls">
+        <div class="hero-pill" style="background: rgba(212,175,55,0.2); color: var(--gold-glow);">
+          <i class="fa-solid fa-stamp"></i> Customization Engine
+        </div>
+        <h2 class="studio-title font-serif">Live Leather Monogram Studio</h2>
+        <p class="studio-subtitle">
+          Test your personalized initials and scripture stamps on full-grain leather. Every leather kit comes with pre-punched leather and brass alphabet stamps.
+        </p>
+
+        <div class="control-group">
+          <label class="control-label">Your Monogram Initials (2–3 Letters):</label>
+          <input type="text" id="inputInitials" class="studio-input" value="E.M." maxlength="4" placeholder="e.g. A.K.">
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">Scripture / Motto Stamp:</label>
+          <select id="selectScripture" class="studio-input">
+            <option value='"Plant seeds of faith"'>"Plant seeds of faith"</option>
+            <option value='"Walk in Love • Eph 5:2"'>"Walk in Love • Eph 5:2"</option>
+            <option value='"Fearfully & Wonderfully Made"'>"Fearfully & Wonderfully Made"</option>
+            <option value='"Light to My Path • Ps 119"'>"Light to My Path • Ps 119"</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">Leather Finish Color:</label>
+          <div class="swatch-picker">
+            <button class="swatch-btn active" data-color="#5C2B0B" style="background: #5C2B0B;" title="Cognac Leather"></button>
+            <button class="swatch-btn" data-color="#3A1E0B" style="background: #3A1E0B;" title="Dark Espresso"></button>
+            <button class="swatch-btn" data-color="#9C522B" style="background: #9C522B;" title="Saddle Tan"></button>
+            <button class="swatch-btn" data-color="#6B3529" style="background: #6B3529;" title="Heritage Mahogany"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Gift Bundle Builder -->
+  <section class="bundle-section" id="bundleSection">
+    <div class="section-header" style="margin-bottom: 20px;">
+      <div class="section-subtitle">Save 20% With Custom Gift Sets</div>
+      <h2 class="section-title">Build Your Storybook + Leather Kit Bundle</h2>
+    </div>
+
+    <div class="bundle-grid">
+      <div class="bundle-picker-card">
+        <label class="control-label" style="color: var(--cognac-dark); margin-bottom: 8px; display: block;">1. Select Children Storybook:</label>
+        <select class="filter-select" id="bundleBookSelect" style="width: 100%;">
+          <!-- Options populated by JS -->
+        </select>
+      </div>
+
+      <div class="bundle-picker-card">
+        <label class="control-label" style="color: var(--cognac-dark); margin-bottom: 8px; display: block;">2. Select Leather DIY Craft Kit:</label>
+        <select class="filter-select" id="bundleLeatherSelect" style="width: 100%;">
+          <!-- Options populated by JS -->
+        </select>
+      </div>
+
+      <div class="bundle-summary-card">
+        <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;">Gift Bundle Savings</div>
+        <div style="font-size: 2.2rem; font-weight: 800; margin: 8px 0;" id="bundlePrice">$38.40</div>
+        <div style="font-size: 0.85rem; text-decoration: line-through; opacity: 0.7;" id="bundleOldPrice">$48.00</div>
+        <button class="btn-primary" id="addBundleBtn" style="width: 100%; justify-content: center; margin-top: 16px; background: var(--gold-accent); color: var(--bg-dark);">
+          <i class="fa-solid fa-gift"></i> Add Gift Bundle to Cart
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Concierge Modal -->
+  <div class="modal-overlay" id="chatModal">
+    <div class="chat-modal-box">
+      <div class="chat-modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <i class="fa-solid fa-seedling" style="font-size: 1.2rem; color: var(--gold-glow);"></i>
+          <div>
+            <div style="font-weight: 700;">scriptureseedsZerah Assistant</div>
+            <div style="font-size: 0.75rem; opacity: 0.85;">Gift Finder & Crafting Guide</div>
+          </div>
+        </div>
+        <button class="btn-icon" id="closeChatBtn" style="background: transparent; border: none; color: white;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="chat-modal-body" id="chatMessages">
+        <div class="chat-message bot">
+          Welcome to <strong>scriptureseedsZerah</strong>! 👋 I can help you find bedtime storybooks for ages 0–5 or recommend the ideal beginner leather craft kit for family memory making. How can I help you today?
+        </div>
+      </div>
+
+      <div class="chat-modal-input-bar">
+        <input type="text" id="chatInput" class="studio-input" style="color: var(--text-dark); background: var(--storybook-cream);" placeholder="Ask e.g. 'Bedtime story for 3yo under $40 bundle'...">
+        <button class="btn-primary" id="sendChatBtn" style="padding: 10px 18px;">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Storybook Sample Reader Modal -->
+  <div class="modal-overlay" id="sampleModal">
+    <div class="chat-modal-box" style="max-width: 650px; height: 550px;">
+      <div class="chat-modal-header" style="background: var(--storybook-blue);">
+        <div style="font-weight: 700;" id="sampleModalTitle">Storybook Reader Sample</div>
+        <button class="btn-icon" id="closeSampleBtn" style="background: transparent; border: none; color: white;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="chat-modal-body" style="padding: 30px; text-align: center; background: #FAF6F0;" id="sampleModalContent">
+        <!-- Sample content injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide-out Shopping Cart Drawer -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <div style="font-weight: 700; font-size: 1.1rem; color: var(--cognac-dark);">
+        <i class="fa-solid fa-bag-shopping"></i> Your Basket
+      </div>
+      <button class="btn-icon" id="closeCartBtn" style="border: none;">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="cart-items-list" id="cartItemsList">
+      <div style="text-align: center; color: var(--text-muted); margin-top: 40px;">
+        Your basket is currently empty.
+      </div>
+    </div>
+
+    <div class="cart-footer">
+      <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; margin-bottom: 16px;">
+        <span>Total:</span>
+        <span id="cartTotal" style="color: var(--cognac-dark);">$0.00</span>
+      </div>
+      <button class="btn-primary" id="checkoutBtn" style="width: 100%; justify-content: center;">
+        Proceed to Checkout
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="logo-text brand-title" style="color: var(--gold-glow); font-size: 1.4rem; margin-bottom: 12px;">
+          scriptureseedsZerah
+        </div>
+        <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); max-width: 320px;">
+          Handcrafting tangible seeds of faith through wholesome children's storybooks (ages 0–5) and DIY leathercraft kits meant to be cherished for generations.
+        </p>
+      </div>
+
+      <div>
+        <h4 style="color: var(--gold-accent); margin-bottom: 16px;">Storybooks</h4>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: rgba(255,255,255,0.8);">
+          <li>Ages 0–2 Touch & Feel</li>
+          <li>Ages 3–5 Bedtime Stories</li>
+          <li>Scripture Seed Memory Books</li>
+          <li>Gift Set Collections</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="color: var(--gold-accent); margin-bottom: 16px;">Leather DIY Kits</h4>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: rgba(255,255,255,0.8);">
+          <li>Handstitched Leather Bookmarks</li>
+          <li>Passport Travel Covers</li>
+          <li>Monogram Keychain Craft Sets</li>
+          <li>Alphabet Brass Stamping Tools</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="color: var(--gold-accent); margin-bottom: 16px;">Join the Family</h4>
+        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 12px;">Receive free monthly bedtime story audio clips & crafting guides.</p>
+        <div style="display: flex; gap: 6px;">
+          <input type="email" placeholder="Your email address" class="studio-input" style="font-size: 0.85rem; padding: 8px 12px;">
+          <button class="btn-primary" style="padding: 8px 14px; background: var(--gold-accent); color: var(--bg-dark);">Subscribe</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 scriptureseedsZerah. All Rights Reserved. Crafted with love for growing families.
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
